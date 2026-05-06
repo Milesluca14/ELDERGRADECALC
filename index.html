@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elder Calculus 1132Q Grade Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+    <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+  </button>
+
+  <header>
+    <div class="header-inner">
+      <div class="eyebrow">University of Connecticut &nbsp;·&nbsp; MATH 1132Q &nbsp;·&nbsp; Spring 2026</div>
+      <h1>Elder Calculus 1132Q</h1>
+      <p class="h1-sub">Grade Calculator</p>
+      <p class="header-desc">
+        Adjust the sliders below to estimate your final course grade in real time.
+        Dropped scores are automatically detected and faded out.
+        The Final Exam can only raise — never lower — your Exam 1 and Exam 2 grades.
+      </p>
+      <blockquote>
+        "2 quiz scores, 3 WebAssign scores and 6 Lecture Question scores will be dropped."
+        <cite>— Prof. Elder</cite>
+      </blockquote>
+    </div>
+  </header>
+
+  <div class="weight-strip">
+    <div class="weight-strip-inner">
+      <div class="wt"><span class="wt-pct">5%</span><span class="wt-name">Lecture Questions</span></div>
+      <div class="wt-div"></div>
+      <div class="wt"><span class="wt-pct">10%</span><span class="wt-name">WebAssign</span></div>
+      <div class="wt-div"></div>
+      <div class="wt"><span class="wt-pct">20%</span><span class="wt-name">Quizzes</span></div>
+      <div class="wt-div"></div>
+      <div class="wt"><span class="wt-pct">20%</span><span class="wt-name">Exam 1</span></div>
+      <div class="wt-div"></div>
+      <div class="wt"><span class="wt-pct">20%</span><span class="wt-name">Exam 2</span></div>
+      <div class="wt-div"></div>
+      <div class="wt"><span class="wt-pct">25%</span><span class="wt-name">Final Exam</span></div>
+    </div>
+  </div>
+
+  <div class="sticky-bar" id="sticky-bar">
+    <div class="sticky-inner">
+      <span class="sticky-label">Your Grade</span>
+      <span class="sticky-score" id="sticky-score">—</span>
+      <span class="sticky-letter" id="sticky-letter">—</span>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- LECTURE QUESTIONS -->
+    <section class="card">
+      <div class="card-head">
+        <div>
+          <h2>Lecture Questions</h2>
+          <p class="card-meta">27 total &nbsp;·&nbsp; scored 0–2 &nbsp;·&nbsp; lowest 6 dropped &nbsp;·&nbsp; top 21 count &nbsp;·&nbsp; <b>5% of grade</b></p>
+        </div>
+        <button class="set-btn" id="btn-lq-all">Set all to 2</button>
+      </div>
+      <div class="slider-list" id="lq-sliders"></div>
+    </section>
+
+    <!-- WEBASSIGN -->
+    <section class="card">
+      <div class="card-head">
+        <div>
+          <h2>WebAssign Homework</h2>
+          <p class="card-meta">22 total &nbsp;·&nbsp; scored 0–100 &nbsp;·&nbsp; lowest 3 dropped &nbsp;·&nbsp; top 19 count &nbsp;·&nbsp; <b>10% of grade</b></p>
+        </div>
+        <button class="set-btn" id="btn-wa-all">Set all to 100</button>
+      </div>
+      <div class="slider-list" id="wa-sliders"></div>
+    </section>
+
+    <!-- QUIZZES -->
+    <section class="card">
+      <div class="card-head">
+        <div>
+          <h2>Discussion Quizzes</h2>
+          <p class="card-meta">10 total &nbsp;·&nbsp; scored 0–100 &nbsp;·&nbsp; lowest 2 dropped &nbsp;·&nbsp; top 8 count &nbsp;·&nbsp; <b>20% of grade</b></p>
+        </div>
+      </div>
+      <div class="slider-list" id="quiz-sliders"></div>
+    </section>
+
+    <!-- MIDTERMS -->
+    <section class="card">
+      <div class="card-head">
+        <div>
+          <h2>Midterm Exams</h2>
+          <p class="card-meta">scored 0–100 &nbsp;·&nbsp; <b>20% each</b> &nbsp;·&nbsp; final can only raise these scores</p>
+        </div>
+      </div>
+      <div class="slider-list">
+        <div class="slider-item" id="e1-item">
+          <div class="slider-top">
+            <span class="slider-label">Exam 1</span>
+            <div class="slider-right">
+              <span class="boost-pill" id="e1-badge">↑ boosted by final</span>
+              <span class="slider-num" id="e1-val">78</span>
+            </div>
+          </div>
+          <input class="big-slider" type="range" min="0" max="100" step="1" value="78" id="e1" />
+          <div class="slider-ends"><span>0</span><span>100</span></div>
+        </div>
+        <div class="slider-item" id="e2-item">
+          <div class="slider-top">
+            <span class="slider-label">Exam 2</span>
+            <div class="slider-right">
+              <span class="boost-pill" id="e2-badge">↑ boosted by final</span>
+              <span class="slider-num" id="e2-val">82</span>
+            </div>
+          </div>
+          <input class="big-slider" type="range" min="0" max="100" step="1" value="82" id="e2" />
+          <div class="slider-ends"><span>0</span><span>100</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL EXAM -->
+    <section class="card card-accent">
+      <div class="card-head">
+        <div>
+          <h2>Final Exam</h2>
+          <p class="card-meta">3 parts &nbsp;·&nbsp; 8 questions each &nbsp;·&nbsp; scored 0–100 per part &nbsp;·&nbsp; <b>25% of grade total</b></p>
+        </div>
+      </div>
+      <div class="logic-box">
+        Effective Exam 1 = max(Exam 1, avg(Exam 1 + Part 1)) &nbsp;&nbsp;·&nbsp;&nbsp;
+        Effective Exam 2 = max(Exam 2, avg(Exam 2 + Part 2)) &nbsp;&nbsp;·&nbsp;&nbsp;
+        Part 3 counts toward the final composite only.
+      </div>
+      <div class="slider-list">
+        <div class="slider-item">
+          <div class="slider-top">
+            <span class="slider-label">Part 1 — Unit 1 <span class="part-tag">can boost Exam 1</span></span>
+            <div class="slider-right"><span class="slider-num" id="f1-val">80</span></div>
+          </div>
+          <input class="big-slider" type="range" min="0" max="100" step="1" value="80" id="f1" />
+          <div class="slider-ends"><span>0</span><span>100</span></div>
+        </div>
+        <div class="slider-item">
+          <div class="slider-top">
+            <span class="slider-label">Part 2 — Unit 2 <span class="part-tag">can boost Exam 2</span></span>
+            <div class="slider-right"><span class="slider-num" id="f2-val">80</span></div>
+          </div>
+          <input class="big-slider" type="range" min="0" max="100" step="1" value="80" id="f2" />
+          <div class="slider-ends"><span>0</span><span>100</span></div>
+        </div>
+        <div class="slider-item">
+          <div class="slider-top">
+            <span class="slider-label">Part 3 — Unit 3 <span class="part-tag">final composite only</span></span>
+            <div class="slider-right"><span class="slider-num" id="f3-val">80</span></div>
+          </div>
+          <input class="big-slider" type="range" min="0" max="100" step="1" value="80" id="f3" />
+          <div class="slider-ends"><span>0</span><span>100</span></div>
+        </div>
+      </div>
+      <div class="final-row">
+        <span class="final-row-label">Final Exam Grade <span class="final-row-sub">(average of 3 parts)</span></span>
+        <span class="final-row-score" id="final-composite">80.0</span>
+        <span class="final-row-denom">/ 100</span>
+      </div>
+    </section>
+
+    <!-- RESULT -->
+    <section class="result-section">
+      <div class="result-cards">
+        <div class="result-card">
+          <div class="rc-label">Course Grade</div>
+          <div class="rc-value" id="course-grade">—</div>
+        </div>
+        <div class="result-card">
+          <div class="rc-label">Letter Grade</div>
+          <div class="rc-value" id="letter-grade">—</div>
+        </div>
+      </div>
+      <div class="breakdown" id="breakdown"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>Built by Miles Lucatorto</span>
+    <span class="dot">·</span>
+    <span>Spring 2026</span>
+    <span class="dot">·</span>
+    <span>University of Connecticut</span>
+  </footer>
+
+  <script src="calc.js"></script>
+</body>
+</html>
